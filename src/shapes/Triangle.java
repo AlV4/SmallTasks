@@ -15,7 +15,9 @@ public class Triangle extends Shape{
 
     @Override
     public void draw(Graphics g) {
-        g.setColor(color);
-        g.fillPolygon(x,y,amount);
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setStroke(new BasicStroke(10));
+        g2.setColor(color);
+        g2.drawPolygon(x,y,amount);
     }
 }
