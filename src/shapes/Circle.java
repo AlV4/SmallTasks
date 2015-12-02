@@ -2,7 +2,7 @@ package shapes;
 
 import java.awt.*;
 
-public class Circle extends Shape {
+public class Circle extends AbstractShape {
     public Circle(){
 
     }

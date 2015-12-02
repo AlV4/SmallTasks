@@ -2,7 +2,7 @@ package shapes;
 
 import java.awt.*;
 
-public class Triangle extends Shape{
+public class Triangle extends AbstractShape {
 
     int []x = {150, 200, 100};
     int []y = {50, 150, 150};
@@ -18,6 +18,6 @@ public class Triangle extends Shape{
         Graphics2D g2 = (Graphics2D) g;
         g2.setStroke(new BasicStroke(10));
         g2.setColor(color);
-        g2.drawPolygon(x,y,amount);
+        g2.drawPolygon(x, y, amount);
     }
 }

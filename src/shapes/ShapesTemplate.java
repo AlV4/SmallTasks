@@ -1,19 +1,18 @@
 package shapes;
 
-import java.awt.Dimension;
-import java.awt.Graphics;
+import java.awt.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 public class ShapesTemplate extends JPanel {
 
-    private Drawable[] shapes;
+    private Drawable[] abstractShapes;
 
-    public ShapesTemplate(Drawable[] shapes) {
-        this.shapes = shapes;
-        if (shapes == null || shapes.length < 1) {
-            this.shapes = new Drawable[0];
+    public ShapesTemplate(Drawable[] abstractShapes) {
+        this.abstractShapes = abstractShapes;
+        if (abstractShapes == null || abstractShapes.length < 1) {
+            this.abstractShapes = new Drawable[0];
         }
 
         JFrame frame = new JFrame("DAY 6, 2D Graphics");
@@ -29,7 +28,7 @@ public class ShapesTemplate extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
-        for (Drawable s : shapes) {
+        for (Drawable s : abstractShapes) {
             s.draw(g);
         }
     }
