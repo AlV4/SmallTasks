@@ -19,9 +19,10 @@ public class Student {
 
     @Override
     public boolean equals(Object o) {
-       if(o != null && o instanceof Student){
+       if(o instanceof Student){
            Student student = (Student)o;
-           if(getName().trim().toLowerCase().equals(student.getName().trim().toLowerCase())
+           if((student.getName()!= null && student.getSecondName() != null &&
+                   getName().trim().toLowerCase().equals(student.getName().trim().toLowerCase())
                    && getSecondName().trim().toLowerCase().equals(student.getSecondName().trim().toLowerCase())){
                return true;
            }
