@@ -16,7 +16,7 @@ public class Launcher {
         clas.enter(Student.studentCreator("Petro", "Sidorov"));
         clas.enter(Student.studentCreator("Sidor", "Vasiliev"));
         clas.printStudentInfo();
-        System.out.println(clas.isPresent("Petro", "Sidorov"));
+        System.out.println(clas.isPresent(Student.studentCreator("Petro", "Sidorov")));
         System.out.println(clas.getStudentCount());
         clas.leave(s);
         clas.printStudentInfo();

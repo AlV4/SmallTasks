@@ -23,13 +23,10 @@ public class ClassRoom {
         return students.size();
     }
 
-    public boolean isPresent(String name, String secondName){
-        if(name != null && secondName != null){
-            for (Student student : students){
-                if(name.trim().toLowerCase().equals(student.getName().trim().toLowerCase())&&
-                        secondName.trim().toLowerCase().equals(student.getSecondName().trim().toLowerCase())){
-                    return true;
-                }
+    public boolean isPresent(Student student){
+        if(student != null && students != null){
+            if(students.contains(student)){
+                return true;
             }
         }
         return false;

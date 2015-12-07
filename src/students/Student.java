@@ -17,6 +17,19 @@ public class Student {
         return "{" + getName() + " " + getSecondName()+ "}";
     }
 
+    @Override
+    public boolean equals(Object o) {
+       if(o != null && o instanceof Student){
+           Student student = (Student)o;
+           if(getName().trim().toLowerCase().equals(student.getName().trim().toLowerCase())
+                   && getSecondName().trim().toLowerCase().equals(student.getSecondName().trim().toLowerCase())){
+               return true;
+           }
+       }
+        return false;
+    }
+
+
     public static Student studentCreator(String name, String secondName){
         return new Student(name, secondName);
     }
