@@ -1,0 +1,5 @@
+package shapes.coffeeshop;
+
+public enum StandartDrinks {
+    BLACK_COFFEE, COFFEE_WITH_MILK, AMERICANO, CAPUCCINO, MOCACCINO, BLACK_TEA, GREEN_TEA, TEA_WITH_BERGAMOT
+}
