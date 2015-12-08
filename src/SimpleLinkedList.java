@@ -1,13 +1,15 @@
 public class SimpleLinkedList {
 
     public Node firstNode;
-    public int size;
+    private int size;
 
-    private class Node {
-        public Object o;
-        public Node node;
+    class Node {
+         public Object o;
+         Node nextNode;
 
-        public Node() {
+        @Override
+        public String toString() {
+            return "[ " + o + " ]" + "--> "+nextNode;
         }
     }
 
@@ -16,7 +18,13 @@ public class SimpleLinkedList {
     }
 
     public void addFirst(Object o){
-
+        Node node = new Node();
+        node.o = o;
+        if(firstNode != null){
+            node.nextNode = firstNode;
+        }
+        firstNode = node;
+        size++;
     }
 
     public void addLast(Object o){
