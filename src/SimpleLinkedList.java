@@ -33,15 +33,15 @@ public class SimpleLinkedList {
         node.o = o;
         if(firstNode == null){
            firstNode = node;
-            size++;
+
         }else {
             lastNode = firstNode;
             while (lastNode.nextNode != null){
                 lastNode = lastNode.nextNode;
             }
             lastNode.nextNode = node;
-            size++;
         }
+        size++;
     }
 
     public void addAfter(Object target, Object afterWho){
