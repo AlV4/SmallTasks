@@ -3,6 +3,7 @@ public class SimpleLinkedList {
     public int size;
 
     public SimpleLinkedList() {
+        size = 0;
     }
 
     public void addFirst(Object o){
@@ -13,7 +14,7 @@ public class SimpleLinkedList {
 
     }
 
-    public void addAfter(Object afterWho, Object added){
+    public void addAfter(Object target, Object afterWho){
 
     }
 
