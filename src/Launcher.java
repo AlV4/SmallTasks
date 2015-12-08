@@ -14,6 +14,7 @@ public class Launcher {
         list.addFirst("3");
         list.addFirst("2");
         list.addFirst("1");
+        list.addLast("100");
         System.out.println(list.getSize());
 
         SimpleLinkedList.Node n = list.firstNode;
