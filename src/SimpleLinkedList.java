@@ -1,7 +1,15 @@
 public class SimpleLinkedList {
 
-    public Node firstNode;
+    private Node firstNode;
     private int size;
+
+    @Override
+    public String toString() {
+        if(firstNode != null) {
+            return firstNode.toString();
+        }
+        return "This list is empty!";
+    }
 
     class Node {
          public Object o;
@@ -9,7 +17,7 @@ public class SimpleLinkedList {
 
         @Override
         public String toString() {
-            return "[ " + o + " ]" + "--> "+nextNode;
+            return "[ " + o + " ]" + "--> " + nextNode;
         }
     }
 
@@ -44,8 +52,32 @@ public class SimpleLinkedList {
         size++;
     }
 
-    public void addAfter(Object target, Object afterWho){
+    public void addAfter(Object afterWho, Object target){
+        if (firstNode == null){
+            System.out.println("This list is empty!");
+            return;
+        }
+        Node n = new Node();
+        n.o = target;
+        Node currentNode = firstNode;
+        if(currentNode.o.equals(afterWho)){
+            n.nextNode = currentNode.nextNode;
+            currentNode.nextNode = n;
+            size++;
+            return;
+        }
+        while (!currentNode.o.equals(afterWho)){
+            currentNode = currentNode.nextNode;
+            if(!currentNode.o.equals(afterWho) && currentNode.nextNode == null){
+                throw new IllegalStateException("There is no such elements!");
+            }
+        }
 
+            n.nextNode = currentNode.nextNode;
+            currentNode.nextNode = n;
+
+        size++;
+        System.out.println("Element successfully added!");
     }
 
     public int getSize(){
