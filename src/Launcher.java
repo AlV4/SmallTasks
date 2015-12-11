@@ -3,11 +3,12 @@ public class Launcher {
     public static void main(String[] args) {
 
         SimpleLinkedList list = new SimpleLinkedList();
-
-        list.addLast("10");
-        list.addAfter("10", "Target object");
-
+        list.addFirst(10);
+        list.addFirst(101);
+        list.addLast(1);
         System.out.println(list.toString());
+        list.remove(10);
+
         for (Object o: list){
             System.out.print(o);
         }
@@ -19,15 +20,18 @@ public class Launcher {
         list1.addFirst("add first");
         list1.addFirst(" one");
         list1.addFirst("two");
-        list1.addFirst("1");
-        list1.addLast("22");
-        list1.addAfter("22", null);
-        System.out.println(list1.toString());
-        System.out.println("Size of list: "+list1.getSize());
+        list1.addFirst(1);
 
+        list1.addLast("23");
+        list1.addAfter(1, 2323233);
+        System.out.println(list1.toString());
+        list1.remove("23");
+        list1.remove("22");
+        list1.addLast("23");
         for(Object s:list1){
             System.out.print(s);
         }
+
 
     }
 

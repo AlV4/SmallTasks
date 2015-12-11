@@ -45,7 +45,7 @@ public class SimpleLinkedList implements Iterable<Object> {
                 return n;
             }
             firstElement = firstNode;
-            if(firstElement.nextNode == null){
+            if (firstElement.nextNode == null) {
                 n = null;
             }
             return firstElement;
@@ -57,7 +57,7 @@ public class SimpleLinkedList implements Iterable<Object> {
         }
 
         public boolean hasNext() {
-            if (n == null || (n.nextNode == null && n!=firstNode)) {
+            if (n == null || (n.nextNode == null && n != firstNode)) {
                 return false;
             }
             return true;
@@ -119,6 +119,30 @@ public class SimpleLinkedList implements Iterable<Object> {
         n.nextNode = currentNode.nextNode;
         currentNode.nextNode = n;
         size++;
+    }
+
+    public void remove(Object o) {
+        if (size == 0) {
+            System.out.println("List is empty! No elements to remove!");
+            return;
+        }
+        Node previous = firstNode;
+        Node current = firstNode.nextNode;
+        if (previous.o.equals(o)) {
+            firstNode = firstNode.nextNode;
+            size--;
+            return;
+        }
+        while (current != null) {
+            if (current.o.equals(o)) {
+                previous.nextNode = current.nextNode;
+                size--;
+                return;
+            }
+            previous = current;
+            current = current.nextNode;
+        }
+        throw new IllegalStateException("There is no such elements!");
     }
 
     public int getSize() {
