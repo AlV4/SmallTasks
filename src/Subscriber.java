@@ -1,6 +1,8 @@
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
-public class Subscriber {
+public class Subscriber implements Observer{
     private String name;
     private String eMail;
     private String address;
@@ -49,5 +51,16 @@ public class Subscriber {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        if(arg instanceof AbstractPrintingEdition) {
+            for (AbstractPrintingEdition edition : subsribes){
+                if(edition.equals(arg)){
+                    System.out.println(name + " notified about " + ((AbstractPrintingEdition)arg).getName() + "!");
+                }
+            }
+        }
     }
 }
