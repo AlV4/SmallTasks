@@ -4,13 +4,13 @@ public class Launcher {
 
         MyOwnBox box = new MyOwnBox<>();
 
-        box.add(new Eagle());
-        box.add(new Duck());
-        box.add(new Eagle());
-        Duck duck = new Duck();
+        box.add(new Eagle("One Eagle", 4));
+        box.add(new Duck("One Duck", 3));
+        box.add(new Eagle("Another Eagle", 2));
+        Duck duck = new Duck("Duck with a reference", 1);
         box.add(duck);
         box.print();
-        box.remove(duck);
+        box.sort();
         box.print();
 
 
