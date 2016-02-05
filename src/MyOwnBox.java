@@ -24,6 +24,14 @@ public class MyOwnBox <T extends AbstractBird>{
        });
     }
 
+    String invade(short ships){
+        return "Few";
+    }
+
+    String invade(short... ships){
+        return "Many";
+    }
+
     public void print(){
         System.out.println(Arrays.asList(listOfThings));
     }

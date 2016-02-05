@@ -2,19 +2,12 @@ public class Launcher {
 
     public static void main(String[] args) {
 
-        MyOwnBox box = new MyOwnBox<>();
+        ServiceRepository<Service> srv = new ServiceRepository<>();
+        for(int i = 0; i <= 10; i++) {
+            srv.add(new Duck("duck", i));
+        }
 
-        box.add(new Eagle("One Eagle", 4));
-        box.add(new Duck("One Duck", 3));
-        box.add(new Eagle("Another Eagle", 2));
-        Duck duck = new Duck("Duck with a reference", 1);
-        box.add(duck);
-        box.print();
-        box.sort();
-        box.print();
-
-
-
+        srv.print();
 
     }
 }
