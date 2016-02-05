@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class MyOwnBox<T>{
-    private ArrayList <T> listOfThings;
+public class MyOwnBox <T extends AbstractBird>{
+    private ArrayList<T> listOfThings;
 
     public MyOwnBox() {
         listOfThings = new ArrayList<>();
