@@ -1,3 +1,6 @@
+import service.Duck;
+
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
@@ -13,6 +16,7 @@ public class Launcher {
         printClassMethod(clazz);
         printClassMethod(new String().getClass());
         printClassFields(clazz);
+        printClassMethod(new Duck("ducky", 10).getClass());
     }
 
     public static void printClassInfo(Class c){
@@ -29,9 +33,15 @@ public class Launcher {
 
     public static void printClassMethod(Class c){
 
-        System.out.println("Class: =========== " + c.getSimpleName() + " METHODS ===========");
-        System.out.println(c.getSimpleName() + " methods:");
+        System.out.println("Class: =========== " + c.getSimpleName() + " METHODS & CONSTRUCTORS ===========");
+        System.out.println("\n" + c.getSimpleName() + " constructors:");
+        Constructor [] constructors = c.getConstructors();
+        for (Constructor constr : constructors){
+            System.out.println(constr.toString());
+        }
+        System.out.println("\n" + c.getSimpleName() + " methods:");
         Method[] methods = c.getDeclaredMethods();
+
         for(Method method : methods){
             System.out.println(method.toString());
         }
