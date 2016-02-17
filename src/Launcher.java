@@ -1,66 +1,20 @@
-import service.Duck;
+import service.Chicken;
+import service.InstanceThroughSettersCreator;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Launcher {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
 
-        Class clazz = new ArrayIndexOutOfBoundsException().getClass();
-        printClassInfo(clazz);
-        clazz = new IllegalArgumentException().getClass();
-        System.out.println();
-        printClassInfo(clazz);
-        printClassMethod(clazz);
-        printClassMethod(new String().getClass());
-        printClassFields(clazz);
-        printClassMethod(new Duck("ducky", 10).getClass());
-    }
+        Map<String, Object> map = new HashMap<>();
+        map.put("name", "Kurka");
+        map.put("amount", 10);
+        map.put("weight", 200);
+        map.put("price", 40);
+        Chicken chicken = new InstanceThroughSettersCreator<Chicken>().initClass(new Chicken().getClass(), map);
+        System.out.println(chicken);
 
-    public static void printClassInfo(Class c){
-
-        System.out.println("Class: =========== " + c.getSimpleName() + " CLASS INFO ===========");
-        System.out.println("Class full name: " + c.getName());
-        if(c.getSuperclass() != null){
-            c = c.getSuperclass();
-            System.out.println("Parent class name: " + c.getName());
-            System.out.println("Up ierarchy class info: ");
-            printClassInfo(c);
-        }
-    }
-
-    public static void printClassMethod(Class c){
-
-        System.out.println("Class: =========== " + c.getSimpleName() + " METHODS & CONSTRUCTORS ===========");
-        System.out.println("\n" + c.getSimpleName() + " constructors:");
-        Constructor [] constructors = c.getConstructors();
-        for (Constructor constr : constructors){
-            System.out.println(constr.toString());
-        }
-        System.out.println("\n" + c.getSimpleName() + " methods:");
-        Method[] methods = c.getDeclaredMethods();
-
-        for(Method method : methods){
-            System.out.println(method.toString());
-        }
-        if(c.getSuperclass() != null){
-            c = c.getSuperclass();
-            printClassMethod(c);
-        }
-    }
-    public static void printClassFields(Class c){
-
-        System.out.println("Class: =========== " + c.getSimpleName() + " FIELDS ===========");
-        System.out.println(c.getSimpleName() + " fields:");
-        Field[] fields = c.getDeclaredFields();
-        for(Field field : fields){
-            System.out.println(field.toString());
-        }
-        if(c.getSuperclass() != null){
-            c = c.getSuperclass();
-            printClassFields(c);
-        }
     }
 }

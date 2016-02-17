@@ -6,6 +6,8 @@ public abstract class AbstractBird implements Service{
     protected double price;
     private String name;
 
+    public AbstractBird(){}
+
     public AbstractBird(String name, int amount) {
         this.name = name;
         this.amount = amount;
@@ -13,7 +15,8 @@ public abstract class AbstractBird implements Service{
 
     @Override
     public String toString() {
-        return "{ Bird: "+ getClass().getSimpleName() + ", amount: " + amount + ", name: " + name + " }";
+        return "{ Bird: "+ getClass().getSimpleName() + ", name: " + name +", amount: " + amount +
+               ", weight: " + weight + ", price: " + price + " }";
     }
 
     public String getName() {
