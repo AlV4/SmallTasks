@@ -1,25 +1,12 @@
-import service.Chicken;
-import service.Hummingbird;
-import service.InstanceCreator;
-
 import java.lang.reflect.Field;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Launcher {
 
-    public static void main(String[] args) throws Exception{
-        InstanceCreator<Chicken>creator = new InstanceCreator<>();
+    public static void main(String[] args){
 
-        Map<String, Object> mapOfPrivates = new HashMap<>();
-        mapOfPrivates.put("anotherName", "Kurka Hummingbird");
-        mapOfPrivates.put("secretAmount", 1012);
-        mapOfPrivates.put("anotherPrice", 2300);
-        mapOfPrivates.put("additionalWeight", 4000);
-        Hummingbird hummingbird = new Hummingbird();
-        creator.setPrivates(hummingbird, mapOfPrivates);
+        ApplicationManager am = new ApplicationManager();
 
-        fieldPrinter(hummingbird);
+
     }
 
     public static void fieldPrinter(Object o) throws NoSuchFieldException, IllegalAccessException {
