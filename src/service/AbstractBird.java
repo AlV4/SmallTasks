@@ -1,6 +1,6 @@
 package service;
 
-public abstract class AbstractBird implements Service{
+public abstract class AbstractBird{
     protected double weight;
     protected int amount;
     protected double price;
