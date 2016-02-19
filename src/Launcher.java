@@ -1,7 +1,8 @@
 import service.Chicken;
+import service.Hummingbird;
 import service.InstanceCreator;
 
-import java.util.ArrayList;
+import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,21 +11,26 @@ public class Launcher {
     public static void main(String[] args) throws Exception{
         InstanceCreator<Chicken>creator = new InstanceCreator<>();
 
-        Map<String, Object> map = new HashMap<>();
-        map.put("name", "Kurka");
-        map.put("amount", 10);
-        map.put("weight", 200);
-        map.put("price", 40);
-        Chicken chicken = creator.initClass(Chicken.class, map);
-        System.out.println(chicken);
+        Map<String, Object> mapOfPrivates = new HashMap<>();
+        mapOfPrivates.put("anotherName", "Kurka Hummingbird");
+        mapOfPrivates.put("secretAmount", 1012);
+        mapOfPrivates.put("anotherPrice", 2300);
+        mapOfPrivates.put("additionalWeight", 4000);
+        Hummingbird hummingbird = new Hummingbird();
+        creator.setPrivates(hummingbird, mapOfPrivates);
 
-        ArrayList<Object>list = new ArrayList<>();
-        list.add("Another Kurka");
-        list.add(20);
-        list.add(50.0d);
-        list.add(111.0d);
-        list.removeAll(list);
-        Chicken chicken1 = creator.initClass(Chicken.class,list);
-           System.out.println(chicken1);
+        fieldPrinter(hummingbird);
+    }
+
+    public static void fieldPrinter(Object o) throws NoSuchFieldException, IllegalAccessException {
+        Class<?> clazz = o.getClass();
+        System.out.println("========" + clazz.getSimpleName() + " private fields ===========");
+        Field[]fields = clazz.getDeclaredFields();
+        for (Field f:fields){
+            if(!f.isAccessible()){
+                f.setAccessible(true);
+                System.out.println("Field: " + f.getName() +  ", type: " + f.getType() + ", value: " + f.get(o));
+            }
+        }
     }
 }

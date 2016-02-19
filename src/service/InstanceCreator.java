@@ -53,4 +53,20 @@ public class InstanceCreator <T> {
         }
         return true;
     }
+
+    public void setPrivates(Object o, Map<String, Object> map) throws Exception{
+        Set<String> names = map.keySet();
+        Field[]fields = o.getClass().getDeclaredFields();
+        for (Field field : fields){
+            String fieldName = field.getName();
+            if(!field.isAccessible()){
+                field.setAccessible(true);
+                for(String str: names){
+                    if(fieldName.trim().toLowerCase().contains(str.trim().toLowerCase())){
+                        field.set(o, map.get(str));
+                    }
+                }
+            }
+        }
+    }
 }

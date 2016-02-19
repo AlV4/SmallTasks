@@ -1,6 +1,7 @@
 package service;
 
 public class Chicken extends AbstractBird {
+    private String privateField = "some private field";
     public Chicken(){
 
     }
