@@ -1,3 +1,7 @@
+import service.AbstractBird;
+import service.Chicken;
+import service.Hummingbird;
+
 import java.lang.reflect.Field;
 
 public class Launcher {
@@ -5,7 +9,10 @@ public class Launcher {
     public static void main(String[] args){
 
         ApplicationManager am = new ApplicationManager();
-
+        Hummingbird hum = new Hummingbird();
+        am.printAnnotatedMethod(hum.getClass());
+        AbstractBird chicken = new Chicken();
+        am.printAnnotatedMethod(chicken.getClass());
 
     }
 

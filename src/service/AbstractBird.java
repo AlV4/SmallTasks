@@ -19,10 +19,12 @@ public abstract class AbstractBird{
                ", weight: " + weight + ", price: " + price + " }";
     }
 
+
     public String getName() {
         return name;
     }
 
+    @Service
     public void setName(String name) {
         this.name = name;
     }
