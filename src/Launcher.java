@@ -6,13 +6,16 @@ import java.lang.reflect.Field;
 
 public class Launcher {
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws Exception{
 
-        ApplicationManager am = new ApplicationManager();
+        ApplicationManager <AbstractBird> am = new ApplicationManager();
         Hummingbird hum = new Hummingbird();
         am.printAnnotatedMethod(hum.getClass());
         AbstractBird chicken = new Chicken();
         am.printAnnotatedMethod(chicken.getClass());
+
+        Chicken chicken3 = (Chicken) am.getService(chicken.getClass());
+        System.out.println(chicken3);
 
     }
 

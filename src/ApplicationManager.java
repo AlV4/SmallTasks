@@ -5,7 +5,7 @@ import java.lang.reflect.Method;
 
 public class ApplicationManager <T>{
 
-   public void printAnnotatedMethod(Class<T> clazz){
+   public void printAnnotatedMethod(Class<? extends T> clazz){
        for(Method m : clazz.getMethods()){
            for(Annotation annotation : m.getAnnotations()){
                if(annotation instanceof Service){
@@ -15,4 +15,9 @@ public class ApplicationManager <T>{
            }
        }
    }
+    public T getService(Class<? extends T> tClass)throws InstantiationException, IllegalAccessException{
+
+        return  tClass.newInstance();
+
+    }
 }
