@@ -1,4 +1,5 @@
 import service.AbstractBird;
+import service.ApplicationManager;
 import service.Chicken;
 import service.Hummingbird;
 
@@ -8,7 +9,8 @@ public class Launcher {
 
     public static void main(String[] args) throws Exception{
 
-        ApplicationManager <AbstractBird> am = new ApplicationManager();
+        ApplicationManager<AbstractBird> am = new ApplicationManager();
+        System.out.println(am.getClass().toString());
         Hummingbird hum = new Hummingbird();
         am.printAnnotatedMethod(hum.getClass());
         AbstractBird chicken = new Chicken();

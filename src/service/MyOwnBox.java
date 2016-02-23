@@ -1,4 +1,4 @@
-import service.AbstractBird;
+package service;
 
 import java.util.ArrayList;
 import java.util.Arrays;

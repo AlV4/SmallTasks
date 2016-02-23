@@ -1,6 +1,8 @@
 package service;
 
-import java.lang.reflect.*;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -27,7 +29,7 @@ public class InstanceCreator <T> {
 
         return instance;
     }
-    public T initClass(Class<T> c, ArrayList<Object> list) throws Exception{
+    public T initClass(Class<? extends T> c, ArrayList<Object> list) throws Exception{
 
         Constructor[] constructors = c.getConstructors();
         if(constructors.length > 0){
@@ -37,8 +39,7 @@ public class InstanceCreator <T> {
                 }
             }
         }
-        System.out.println("Sorry, no constructor with such parameters!");
-        return null;
+        throw new IllegalArgumentException("Sorry, no constructor with such parameters!");
     }
 
     private boolean compareTypes(Constructor constructor, List types){

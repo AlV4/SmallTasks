@@ -1,4 +1,4 @@
-import service.Service;
+package service;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;

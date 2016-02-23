@@ -19,6 +19,32 @@ public abstract class AbstractBird{
                ", weight: " + weight + ", price: " + price + " }";
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof AbstractBird)) return false;
+
+        AbstractBird that = (AbstractBird) o;
+
+        if (Double.compare(that.getWeight(), getWeight()) != 0) return false;
+        if (getAmount() != that.getAmount()) return false;
+        if (Double.compare(that.getPrice(), getPrice()) != 0) return false;
+        return !(getName() != null ? !getName().equals(that.getName()) : that.getName() != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        temp = Double.doubleToLongBits(getWeight());
+        result = (int) (temp ^ (temp >>> 32));
+        result = 31 * result + getAmount();
+        temp = Double.doubleToLongBits(getPrice());
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
+        return result;
+    }
 
     public String getName() {
         return name;
