@@ -1,23 +1,40 @@
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Launcher {
 
     public static void main(String[] args) throws Exception {
 
-        String filename = "D:/FolderCreatedByJava/test.txt";
-        filename.replace("/", File.pathSeparator);
-        File file = new File(filename);
-        if (file.getParentFile().mkdir()) {
-            file.createNewFile();
-        } else {
-            throw new IOException("Failed to create directory " + file.getParent());
+        File fileSource = new File("file.txt");
+        List<String> list = new ArrayList<>();
+        list.add("12345 enter");
+        list.add("12345 out");
+        list.add("54321 IIIIIIIIII");
+        FileWriter writer = new FileWriter(fileSource);
+        for(String str: list) {
+            writer.write(str + " \n");
         }
-        File userdir = new File(System.getProperty("user.dir"));
-        userdir.mkdir();
-        String[] dirs = userdir.list();
-        for (String name : dirs){
-            System.out.println(name);
-        }
+        writer.close();
+
+        copyFile(fileSource, new File("somefile.txt"));
+
+
    }
+    private static void copyFile(File source, File dest) throws IOException {
+        InputStream is = null;
+        OutputStream os = null;
+        try {
+            is = new FileInputStream(source);
+            os = new FileOutputStream(dest + ".copy");
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = is.read(buffer)) != -1) {
+                os.write(buffer, 0, length);
+            }
+        } finally {
+            is.close();
+            os.close();
+        }
+    }
 }
