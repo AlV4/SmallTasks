@@ -1,23 +1,23 @@
-import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
 
 public class Launcher {
 
     public static void main(String[] args) throws Exception {
 
-        byte[] bytes = {102, 16, 35, 0, -1, 12, 18, -40, -58, 113, 2, 0};
-
-        ByteArrayInputStream stream = new ByteArrayInputStream(bytes);
-
-        printStreamData(stream);
-    }
-
-    public static void printStreamData(ByteArrayInputStream stream) {
-        int i;
-        System.out.print("[ ");
-        while ((i = stream.read()) != -1) {
-            byte b = (byte) i;
-            System.out.print(b + " ");
+        String filename = "D:/FolderCreatedByJava/test.txt";
+        filename.replace("/", File.pathSeparator);
+        File file = new File(filename);
+        if (file.getParentFile().mkdir()) {
+            file.createNewFile();
+        } else {
+            throw new IOException("Failed to create directory " + file.getParent());
         }
-        System.out.println("]");
-    }
+        File userdir = new File(System.getProperty("user.dir"));
+        userdir.mkdir();
+        String[] dirs = userdir.list();
+        for (String name : dirs){
+            System.out.println(name);
+        }
+   }
 }
