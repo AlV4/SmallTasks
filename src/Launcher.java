@@ -1,4 +1,5 @@
-import java.io.ByteArrayInputStream;
+import java.io.*;
+import java.nio.file.Files;
 
 public class Launcher {
 
@@ -8,16 +9,27 @@ public class Launcher {
 
         ByteArrayInputStream stream = new ByteArrayInputStream(bytes);
 
-        printStreamData(stream);
+        File file = new File("file.txt");
+        java.nio.file.Path path = file.toPath();
+
+        try (InputStream in = Files.newInputStream(path)) {
+            printStreamData(in);
+        }catch (IOException ex){
+            ex.printStackTrace();
+        }
     }
 
-    public static void printStreamData(ByteArrayInputStream stream) {
-        int i;
-        System.out.print("[ ");
-        while ((i = stream.read()) != -1) {
-            byte b = (byte) i;
-            System.out.print(b + " ");
+    public static void printStreamData(InputStream stream) {
+
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(stream))) {
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+
         }
-        System.out.println("]");
     }
+
 }
