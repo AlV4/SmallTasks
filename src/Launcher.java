@@ -1,4 +1,5 @@
 import java.io.*;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -6,24 +7,55 @@ public class Launcher {
 
     public static void main(String[] args) throws Exception {
 
-        File fileSource = new File("file.txt");
+
+        List<String> list = getStringsList();
+
+        File fileSource = writeToFile(new File("file.txt"), list);
+
+//        copyFile(fileSource, new File("somefile.txt"));
+
+
+        changeEncoding(fileSource, Charset.defaultCharset().toString(), "UTF_32");
+   }
+
+    private static void changeEncoding(File fileSource, String currentEncoding, String desiredEncoding) throws IOException {
+
+        try(Reader in = new BufferedReader(new InputStreamReader(new FileInputStream(fileSource), Charset.forName(currentEncoding)));
+            Writer out = new OutputStreamWriter(new FileOutputStream(fileSource + "newCoding.txt"), desiredEncoding);) {
+
+            StringBuilder buffer = new StringBuilder();
+            int ch;
+            while ((ch = in.read()) > -1) {
+                buffer.append((char) ch);
+            }
+            out.write(buffer.toString());
+        }catch (IOException e){
+            e.printStackTrace();
+
+        }
+    }
+
+    private static List<String> getStringsList() {
         List<String> list = new ArrayList<>();
         list.add("12345 enter");
         list.add("12345 out");
         list.add("54321 IIIIIIIIII");
         list.add("12345 enter");
         list.add("12345 out");
-        list.add("54321 IIII");
-        FileWriter writer = new FileWriter(fileSource);
+        list.add("@@@@@@@@@@");
+        return list;
+    }
+
+    private static File writeToFile(File file, List<String> list) throws IOException {
+
+        FileWriter writer = new FileWriter(file, true);
         for(String str: list) {
             writer.write(str + " \n");
         }
         writer.close();
+        return file;
+    }
 
-        copyFile(fileSource, new File("somefile.txt"));
-
-
-   }
     private static void copyFile(File source, File dest){
         try(
                 InputStream is = new FileInputStream(source);
@@ -38,4 +70,6 @@ public class Launcher {
            e.printStackTrace();
         }
     }
+
+
 }
