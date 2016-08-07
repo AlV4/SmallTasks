@@ -1,17 +1,44 @@
-import java.io.FileOutputStream;
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 
 public class Launcher {
 
-    public static void main(String[] args) throws Exception {
-        FileOutputStream file = new FileOutputStream("console.txt", true);
-        TeePrintStream tee = new TeePrintStream(file, System.out);
-        System.setOut(tee);
+    public static void main(String[] args) {
+        URL url;
+//        InputStream is = null;
+//        BufferedReader br;
+        String line;
 
-//        PrintStream out = new PrintStream(new FileOutputStream("console.txt",true));
-//        System.setOut(out);
-        for(int i = 1; i <= 10; i++) {
-            System.out.println("Sometext " + i + " times");
+        try {
+            url = new URL("http://stackoverflow.com/");
+            URLConnection conn = url.openConnection();
+            BufferedInputStream buffer = new BufferedInputStream(conn.getInputStream());
+
+            StringBuilder builder = new StringBuilder();
+            int byteRead;
+            while ((byteRead = buffer.read()) != -1) {
+                builder.append((char) byteRead);
+            }
+
+            buffer.close();
+
+            System.out.println(builder.toString());
+            System.out.println("The size of the web page is " + builder.length() + " bytes.");
+
+//            is = url.openStream();  // throws an IOException
+//            br = new BufferedReader(new InputStreamReader(is));
+
+//            while ((line = br.readLine()) != null) {
+//                System.out.println(line);
+//            }
+        } catch (MalformedURLException mue) {
+            mue.printStackTrace();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+
         }
-//        out.close();
-   }
+    }
 }
