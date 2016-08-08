@@ -13,7 +13,7 @@ public class Launcher {
         String line;
 
         try {
-            url = new URL("http://stackoverflow.com/");
+            url = new URL("http://google.com/");
             URLConnection conn = url.openConnection();
             BufferedInputStream buffer = new BufferedInputStream(conn.getInputStream());
 
